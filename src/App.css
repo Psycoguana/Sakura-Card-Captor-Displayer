@@ -1,0 +1,64 @@
+#root {
+	display: flow-root;
+	background-image: url('/src/assets/bg.webp');
+	background-position: center;
+	background-size: auto;
+
+	width: 100%;
+	height: 100%;
+	min-height: 100vh;
+}
+
+img.logo {
+	display: block;
+	margin: auto;
+	width: 20%;
+	margin-top: 2%;
+	margin-bottom: 2%;
+}
+
+#form {
+	display: flex;
+	margin-left: 10%;
+	margin-right: 10%;
+	justify-content: space-between;
+	justify-items: center;
+	align-items: center;
+}
+
+.selectItem {
+	width: 35vw;
+	text-align: center;
+}
+
+.meaning {
+	text-align: center;
+	color: #e0e0e0;
+	font-size: 2.3rem;
+	margin-top: 3%;
+	text-shadow: #fcbdea 1px 1px 5px, black 0px 1px 5px;
+}
+
+@media screen and (max-width: 769px) {
+	.meaning {
+		margin-top: 5%;
+		padding: 5%;
+		font-size: 1.5rem;
+	}
+
+	.selectItem {
+		width: auto;
+		text-align: center;
+	}
+}
+
+canvas {
+	width: 100%;
+	height: 100%;
+	display: block;
+	margin: auto;
+	margin-bottom: 10%;
+	/* position: fixed; */
+	/* top: 50; */
+	/* left: 50; */
+}
