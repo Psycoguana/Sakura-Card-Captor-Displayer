@@ -5,6 +5,8 @@ This website grabs the beautiful card art from this loved manga/anime and displa
 
 I've been wanting to try THREE.js for a while now and when I heard about a public Sakura Card Captor API and decided to give it a go 😁
 
+Check it out here (better on mobile): https://sakura-card-captor-displayer.vercel.app/
+
 ## Preview
 <img src="./preview.gif" width="350" height="650" />
 
