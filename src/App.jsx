@@ -23,8 +23,6 @@ function App() {
 		(async function () {
 			const cards = await getCards();
 			setCards(cards);
-			console.log(cards);
-			console.log(cards[0]);
 			setSelectedCard(cards[0]);
 		})();
 	}, []);
@@ -34,7 +32,6 @@ function App() {
 
 		let response = await axios.get('https://4gngurqord.execute-api.us-west-2.amazonaws.com/Prod/cards');
 		response.data.map((card) => {
-			console.log(card);
 			if (Object.hasOwn(card, 'id')) cards.push(card);
 		});
 
@@ -93,7 +90,6 @@ function App() {
 		<div className="App">
 			<Image src={Logo} className="logo" />
 			{cards.length > 0 && renderCardOptions()}
-			{console.log(selectedCard)}
 			{selectedCard.desc !== '' && <h3 className="meaning">{selectedCard.desc}</h3>}
 			{cards.length > 0 && getCanvas()}
 		</div>
