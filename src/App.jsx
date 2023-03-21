@@ -32,26 +32,19 @@ function App() {
 	async function getCards() {
 		let cards = [];
 
-		let response = await axios.get('https://protected-taiga-89091.herokuapp.com/api/card');
-		response.data.data.map((card) => {
-			if (Object.hasOwn(card, 'cardNumber')) cards.push(card);
+		let response = await axios.get('https://4gngurqord.execute-api.us-west-2.amazonaws.com/Prod/cards');
+		response.data.map((card) => {
+			console.log(card);
+			if (Object.hasOwn(card, 'id')) cards.push(card);
 		});
-
-		// API is supposed to have 72 cards, but the second page returns empty objects.
-
-		// response = await axios.get('https://protected-taiga-89091.herokuapp.com/api/card', {
-		// 	params: { page: 2, pageSize: 60 },
-		// });
-		// cards.push(...response.data.data);
-		// console.log(cards);
 
 		return sortCards(cards);
 	}
 
 	function sortCards(cards) {
 		function compare(a, b) {
-			if (a.spanishName > b.spanishName) return 1;
-			if (a.spanishName < b.spanishName) return -1;
+			if (a.title > b.title) return 1;
+			if (a.title < b.title) return -1;
 			return 0;
 		}
 
@@ -63,12 +56,12 @@ function App() {
 			<Form id="form">
 				<Form.Select
 					className="selectItem"
-					onChange={(e) => setSelectedCard(cards.find((card) => card.spanishName === e.target.value))}
+					onChange={(e) => setSelectedCard(cards.find((card) => card.title === e.target.value))}
 					size="lg"
-					value={selectedCard.spanishName}
+					value={selectedCard.title}
 				>
 					{cards.map((card) => (
-						<option key={card._id}>{card.spanishName}</option>
+						<option key={card._id}>{card.title}</option>
 					))}
 				</Form.Select>
 
@@ -88,12 +81,10 @@ function App() {
 	function getCanvas() {
 		return (
 			<Canvas
-				cardFront={cardType === cardVersion.SAKURA ? selectedCard.sakuraCard : selectedCard.clowCard}
-				cardBack={
-					cardType === cardVersion.SAKURA
-						? selectedCard.cardsReverse.sakuraReverse
-						: selectedCard.cardsReverse.clowReverse
+				cardFront={
+					cardType === cardVersion.SAKURA ? selectedCard.sakuraCard.front : selectedCard.clowCard.front
 				}
+				cardBack={cardType === cardVersion.SAKURA ? selectedCard.sakuraCard.back : selectedCard.clowCard.back}
 			/>
 		);
 	}
@@ -102,7 +93,8 @@ function App() {
 		<div className="App">
 			<Image src={Logo} className="logo" />
 			{cards.length > 0 && renderCardOptions()}
-			{selectedCard.meaning !== '' && <h3 className="meaning">{selectedCard.meaning}</h3>}
+			{console.log(selectedCard)}
+			{selectedCard.desc !== '' && <h3 className="meaning">{selectedCard.desc}</h3>}
 			{cards.length > 0 && getCanvas()}
 		</div>
 	);
